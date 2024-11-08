@@ -17,11 +17,17 @@ public class Player : MonoBehaviour
         Destroy ( gameObject ) ;
         }
     }
+
+    public Vector2 screenBounds;
+    public float objectWidth;
+    public float objectHeight;
+
     void Start(){
         //mengambil informasi dari PlayerMovement
         playerMovement = GetComponent<PlayerMovement>();
         //mengambil informasi dari Animator pada EngineEffects
         GameObject engineEffects = GameObject.Find("EngineEffects");
+        GameObject ship = GameObject.Find("Ship");
         if (engineEffects != null){
             animator = engineEffects.GetComponent<Animator>();
             if (animator != null){
@@ -32,6 +38,14 @@ public class Player : MonoBehaviour
                 Debug.LogWarning("Animator component not found on EngineEffects.");
             }
         }
+
+        if (ship != null){
+            objectWidth = ship.GetComponent<SpriteRenderer>().bounds.size.x / 2;
+            objectHeight = ship.GetComponent<SpriteRenderer>().bounds.size.y / 2;
+        } else {
+            Debug.LogWarning("Ship not found");
+        }
+        screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
     }
     void FixedUpdate(){
         //Memanggil method Move dari PlayerMovement
@@ -46,5 +60,10 @@ public class Player : MonoBehaviour
         if (playerMovement != null){
             animator.SetBool("IsMoving", playerMovement.isMoving);
         }
+
+        Vector3 viewPos = transform.position;
+        viewPos.x = Mathf.Clamp(viewPos.x, screenBounds.x * -1 + objectWidth, screenBounds.x - objectWidth);
+        viewPos.y = Mathf.Clamp(viewPos.y, screenBounds.y * -1 - objectHeight, screenBounds.y - (objectHeight * 2));
+        transform.position = viewPos;
     }
 }
