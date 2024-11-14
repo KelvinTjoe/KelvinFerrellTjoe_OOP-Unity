@@ -288,16 +288,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19aacfb5d013cba4581048488f4ca90c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxspeed: {x: 7, y: 5}
-  timetomaxspeed: {x: 1, y: 1}
-  timetostop: {x: 0.5, y: 0.5}
-  stopclamp: {x: 2.5, y: 2.5}
-  moveDirection: {x: 0, y: 0}
-  moveVelocity: {x: 0, y: 0}
-  moveFriction: {x: 0, y: 0}
-  stopFriction: {x: 0, y: 0}
-  rb: {fileID: 0}
-  isMoving: 0
+  maxSpeed: {x: 10, y: 10}
+  timeToFullSpeed: {x: 2, y: 2}
+  timeToStop: {x: 2.5, y: 2.5}
+  stopClamp: {x: 2.5, y: 2.5}
 --- !u!114 &332624567
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -310,9 +304,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ffc86b1d78821449a9f39960f788ba2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  screenBounds: {x: 0, y: 0}
-  objectWidth: 0
-  objectHeight: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -459,10 +450,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 538531753}
-  - component: {fileID: 538531757}
   - component: {fileID: 538531756}
   - component: {fileID: 538531755}
   - component: {fileID: 538531754}
+  - component: {fileID: 538531757}
   m_Layer: 0
   m_Name: WeaponPickup3
   m_TagString: Untagged
@@ -612,7 +603,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 538531752}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8f2b9f3c7ef4ab4ba2915b65547dfa8, type: 3}
+  m_Script: {fileID: 11500000, guid: 5948e39b82dbc1c428d08906ae4f8fb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   weaponHolder: {fileID: 2730465933834800553, guid: abc7f5d7a8c88f94c931240c7b80b0a3, type: 3}
@@ -729,6 +720,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab4ec2d58a901154fb1f1ae3584f25f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 0.15
+  rotateSpeed: 5
 --- !u!58 &623214176
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1135,7 +1128,7 @@ GameObject:
   - component: {fileID: 1032119090}
   - component: {fileID: 1032119089}
   - component: {fileID: 1032119088}
-  - component: {fileID: 1032119087}
+  - component: {fileID: 1032119091}
   m_Layer: 0
   m_Name: WeaponPickup2
   m_TagString: Untagged
@@ -1158,19 +1151,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 139963475}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1032119087
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1032119085}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8f2b9f3c7ef4ab4ba2915b65547dfa8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weaponHolder: {fileID: 5383407642457950197, guid: a4a8cf230fb5f184487db8432647c616, type: 3}
 --- !u!61 &1032119088
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1289,6 +1269,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1032119091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1032119085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5948e39b82dbc1c428d08906ae4f8fb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponHolder: {fileID: 5383407642457950197, guid: a4a8cf230fb5f184487db8432647c616, type: 3}
 --- !u!1 &1153979772
 GameObject:
   m_ObjectHideFlags: 0
@@ -1629,8 +1622,8 @@ GameObject:
   - component: {fileID: 1861780192}
   - component: {fileID: 1861780196}
   - component: {fileID: 1861780195}
-  - component: {fileID: 1861780194}
   - component: {fileID: 1861780193}
+  - component: {fileID: 1861780197}
   m_Layer: 0
   m_Name: WeaponPickup1
   m_TagString: Untagged
@@ -1698,19 +1691,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5, y: 0.5}
   m_EdgeRadius: 0
---- !u!114 &1861780194
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1861780191}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8f2b9f3c7ef4ab4ba2915b65547dfa8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weaponHolder: {fileID: -6620841050998265259, guid: 103244d555338824f9299100c1406d6f, type: 3}
 --- !u!212 &1861780195
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1784,6 +1764,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1861780197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1861780191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5948e39b82dbc1c428d08906ae4f8fb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponHolder: {fileID: 8813725270410780140, guid: 103244d555338824f9299100c1406d6f, type: 3}
 --- !u!1 &2044870464
 GameObject:
   m_ObjectHideFlags: 0
@@ -1793,10 +1786,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2044870465}
-  - component: {fileID: 2044870469}
   - component: {fileID: 2044870468}
   - component: {fileID: 2044870467}
   - component: {fileID: 2044870466}
+  - component: {fileID: 2044870469}
   m_Layer: 0
   m_Name: WeaponPickup4
   m_TagString: Untagged
@@ -1946,7 +1939,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2044870464}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8f2b9f3c7ef4ab4ba2915b65547dfa8, type: 3}
+  m_Script: {fileID: 11500000, guid: 5948e39b82dbc1c428d08906ae4f8fb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   weaponHolder: {fileID: 9086491472921733139, guid: 02fa3b521bc6c6f4b9f1fec32f041e7d, type: 3}

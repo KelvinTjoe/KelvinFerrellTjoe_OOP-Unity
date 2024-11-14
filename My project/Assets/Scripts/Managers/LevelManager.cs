@@ -1,21 +1,36 @@
 using System.Collections;
-using System.Collections.Generic;
+using Kelvin;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+// Singleton
 public class LevelManager : MonoBehaviour
 {
-    public static LevelManager Instance { get; private set; }
-    public Player player;
-    void Awake() {
-        if (Instance == null) { Instance = this;  }
-        else { Destroy(gameObject); }
-        player = FindObjectOfType<Player>();
+    [SerializeField] Animator animator;
+
+    void Awake()
+    {
+        animator = GetComponent<Animator>();
+        animator.enabled = false;
+    }
+
+    IEnumerator LoadSceneAsync(string sceneName)
+    {
+        animator.enabled = true;
+
+        // animator.SetTrigger("startTransition");
+
+        yield return new WaitForSeconds(1);
+
+        SceneManager.LoadSceneAsync(sceneName);
+
+        animator.SetTrigger("endTransition");
+
+        Player.Instance.transform.position = new(0, -4.5f);
     }
 
     public void LoadScene(string sceneName)
     {
-       
+        StartCoroutine(LoadSceneAsync(sceneName));
     }
-    
 }
